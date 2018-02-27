@@ -34,7 +34,6 @@ xSemaphoreHandle semHandler;
 void setupSystem(){
 
 	int Status;
-	// Inicialización de Hw
 	// Initialize the GPIO driver
 	print("-- Initialize the GPIO driver\n\r");
 	Status = XGpio_Initialize(&leds, ID_LED);
@@ -58,17 +57,19 @@ static TaskHandle_t xTaskLED, xTaskPRINT;
 
 static void taskLED( void *pvParameters )
 {
-	for( ;; )
-	{vTaskDelay( 500 );
-		XGpio_DiscreteWrite(&leds, 1, counter);
-		counter++;
+    for( ;; )
+    {
+    	counter++;
+        XGpio_DiscreteWrite(&leds, 1, counter);
 
-		if (counter == 8){
+		if (counter % 8 == 0){
 		// Take Semaphore
         	xSemaphoreGive( semHandler );
-			xil_printf("Semaphore taken!\n\r");
+
+			xil_printf("Semaphore given!\n\r");
 	    }
-	vTaskDelay( 2 );
+
+	vTaskDelay( 100 );
     }
 }
 static void taskPRINT( void *pvParameters )
@@ -77,11 +78,17 @@ static void taskPRINT( void *pvParameters )
 	{
 		if( xSemaphoreTake( semHandler, ( portTickType ) 1 ) == pdTRUE )
         {
-        	xil_printf("Counter Value: %d\n\r", counter);
-        	counter = 0;
+        	xil_printf("Found a modulus(8) number: Counter Value: %d\n\r", counter);
         }
 	}
-	vTaskDelay( 2 );
+	//vTaskDelay( 2 );
+}
+
+void takeSemaphore( xSemaphoreHandle semHandler ){
+
+	if( xSemaphoreTake( semHandler, ( portTickType ) 1 ) == pdTRUE )
+    	xil_printf("The semaphore is mine! Hello!\n\r", counter);
+	return;
 }
 
 int main ( void ){
@@ -108,6 +115,10 @@ int main ( void ){
                  NULL, 						/* The task parameter is not used, so set to NULL. */
                  tskIDLE_PRIORITY,			/* The task runs at the idle priority. */
                  &xTaskPRINT );
+
+    // Start semaphore taken:
+
+    takeSemaphore( semHandler );
 
     // Start scheduler
     vTaskStartScheduler();
