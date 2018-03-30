@@ -23,9 +23,30 @@ En los ejercicios donde se realizaban preguntas, estas fueron contestadas como c
 
 #### Ejercicios `a_FreeRTOS.pdf`
 
-Se detalla a continuación la salida de consola de los ejercicios de la parte `a_FreeRTOS.pdf`:
+Se detallan a continuación la salida de consola y las respuestas a las preguntas de los ejercicios de la parte `a_FreeRTOS.pdf`:
 
 *Ejercicio 1*
+
+¿Qué tarea tiene mayor prioridad?
+
+```
+// Esta tarea tiene mayor prioridad.
+xTaskCreate( prvRxTask,
+           ( const char * ) "GB",
+             configMINIMAL_STACK_SIZE,
+             NULL,
+             tskIDLE_PRIORITY + 1,
+             &xRxTask );
+```
+
+¿Cuántos elementos pueden ser almacenados en la cola?
+
+```
+// Solo puede almacenarse un elemento en esta cola.
+xQueue = xQueueCreate( 	1, 
+                        sizeof( HWstring ) );
+```
+
 
 ```
 Hello from Freertos example main
