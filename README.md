@@ -81,7 +81,7 @@ FreeRTOS Hello World Example PASSED
 
 Primera parte: *Invertir las prioridades de las tasks* 
 
-Lo que debería ocurrir es que prvTxTask se ejecute primero que prvRxTask
+Lo que debería ocurrir es que prvTxTask se ejecute primero que prvRxTask.
 
 Se modificaron las tasks del ejercicio anterior para invertir las prioridades y poder *debuggear* que task se ejecuta primero: 
 
@@ -123,10 +123,10 @@ La tarea `prvTXTask` se ejecuta primero, como se observa en la la siguiente sali
 
 ```
 Hello from Freertos example main
-Task Tx executed                                   # Primera ejecución de prvTXTask, por tener mayor prioridad. 
-Task Rx executed                                   # Luego se ejecuta prvRXTask, la cual se bloquea cuando se hace la lectura del Queue
-Task Tx executed                                   # Como prvRXTask está bloqueda por la lectura del Queue, se vuelve a ejecutar prvTXTask
-Rx task received string from Tx task: Hello World  # prvRXTask continúa donde había quedado bloqueda, es decir, luego de la lectura del Queue
+Task Tx executed                                   // Primera ejecución de prvTXTask, por tener mayor prioridad. 
+Task Rx executed                                   // Luego se ejecuta prvRXTask, la cual se bloquea cuando se hace la lectura del Queue
+Task Tx executed                                   // Como prvRXTask está bloqueda por la lectura del Queue, se vuelve a ejecutar prvTXTask
+Rx task received string from Tx task: Hello World  // prvRXTask continúa donde había quedado bloqueda, es decir, luego de la lectura del Queue
 Task Rx executed
 Task Tx executed
 Rx task received string from Tx task: Hello World
