@@ -115,7 +115,8 @@ char Recdstring[15] = "";
         xil_printf( "Rx task received string from Tx task: %s\r\n", Recdstring );
         RxtaskCntr++;
     }
-}```
+}
+```
 
 Se agregaron las líneas `xil_printf("Task Tx executed\r\n");` y `xil_printf("Task Rx executed\r\n");`. 
 
