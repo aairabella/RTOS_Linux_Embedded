@@ -121,9 +121,57 @@ Task Rx executed
 
 ### Segunda Parte: Agregar `vTaskDelay( x1second )` a `RxTask`
 
+Lo que sucede es que ahora se combinan los bloqueos de ambas tareas, sumado a que la tarea `prvRxTask` se bloquea además cuando lee la Queue. 
+
+A continuación se muestra la salida de consola, detallando lo que sucede a cada paso. El código fué modificado para que el timer solo cuente 3 segundos, por lo cual se alcanza a enviar solo 2 mensajes. 
+
+```
+Hello from Freertos example main
+Task Tx executed, pre delay                        // prvTxTask se bloquea por 1 segundo, no envia nada aún.
+Task Rx executed, pre delay                        // prvRxTask se bloquea por 1 segundo, no recibe nada aún, no se bloquea. 
+Task Tx executed, post delay                       // prvTxTask previo a ejecutar el envio a la Queue, luego del primer bloqueo.
+Task Tx executed, post Queue Send                  // prvTxTask luego de ejecutar el envio a la Queue
+Task Tx executed, pre delay                        // prvTxTask vuelve a ejecutarse debido a que prvRxTask continua bloqueda (no transcurrió un segundo). Se bloquea prvTxTask en ese momento. 
+Task Rx executed, post delay                       // prvRxTask continua su ejecución luego del primer bloqueo.
+Task Rx executed, post Queue Receive               // prvRxTask lee el mensaje almacenado en la Queue. Se bloquea hasta que el mensaje el leido. 
+Rx task received string from Tx task: Hello World  // prvRxTask se desbloquea luego de leer la Queue y como prvTxTask continua bloqueada, prvRxTask puede continuar su ejecución. 
+Task Rx executed, pre delay                        // prvRxTask se bloquea por nuevamente 1 segundo
+Task Tx executed, post delay                       // prvTxTask sale del bloqueo.
+Task Tx executed, post Queue Send                  // prvTxTask envia el segundo mensaje a la Queue
+Task Tx executed, pre delay                        // prvTxTask vuelve a ejecutarse debido a que prvRxTask continua bloqueda (no transcurrió un segundo). Se bloquea prvTxTask en ese momento. 
+Task Rx executed, post delay                       // prvRxTask continua su ejecución luego del segundo bloqueo.
+Task Rx executed, post Queue Receive               // prvRxTask lee el mensaje almacenado en la Queue. Se bloquea hasta que el mensaje el leido. 
+Rx task received string from Tx task: Hello World  // prvRxTask se desbloquea luego de leer la Queue y como prvTxTask continua bloqueada, prvRxTask puede continuar su ejecución. 
+Task Rx executed, pre delay
+FreeRTOS Hello World Example PASSED
+
+```
 
 
 ### Tercera Parte: Asignar la misma prioridad a ambas tareas
 
+El resultado es identico al caso anterior, debido a que la ejecución de las tareas está reglada por los tiempos que estas permanecen bloqueadas, más que por las prioridades de las mismas. 
+
+```
+Hello from Freertos example main
+Task Tx executed, pre delay
+Task Rx executed, pre delay
+Task Tx executed, post delay
+Task Tx executed, post Queue Send
+Task Tx executed, pre delay
+Task Rx executed, post delay
+Task Rx executed, post Queue Receive
+Rx task received string from Tx task: Hello World
+Task Rx executed, pre delay
+Task Tx executed, post delay
+Task Tx executed, post Queue Send
+Task Tx executed, pre delay
+Task Rx executed, post delay
+Task Rx executed, post Queue Receive
+Rx task received string from Tx task: Hello World
+Task Rx executed, pre delay
+FreeRTOS Hello World Example PASSED
+
+```
 
 [Regresar a la página principal](../README.md) 
