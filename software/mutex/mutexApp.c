@@ -93,19 +93,19 @@ int main ( void ){
     xil_printf("---- Start of the Program ----\r\n");
     setupSystem();
 
-    semHandler = xSemaphoreCreateMutex(); // ( semHandler );
+    semHandler = xSemaphoreCreateMutex();
 
 
     print("-- Tasks creation\n\r");
 
-    xTaskCreate  ( taskLED, 					/* The function that implements the task. */
-               ( const char * ) "LED", 	/* Text name for the task, provided to assist debugging only. */
+    xTaskCreate  ( taskLED, 				/* The function that implements the task. */
+               ( const char * ) "LED", 	    /* Text name for the task, provided to assist debugging only. */
                  configMINIMAL_STACK_SIZE, 	/* The stack allocated to the task. */
                  NULL, 						/* The task parameter is not used, so set to NULL. */
                  tskIDLE_PRIORITY,			/* The task runs at the idle priority. */
                  &xTaskLED );
 
-    xTaskCreate  ( taskBTN, 					/* The function that implements the task. */
+    xTaskCreate  ( taskBTN, 				/* The function that implements the task. */
                  ( const char * ) "PRINT", 	/* Text name for the task, provided to assist debugging only. */
                  configMINIMAL_STACK_SIZE, 	/* The stack allocated to the task. */
                  NULL, 						/* The task parameter is not used, so set to NULL. */
