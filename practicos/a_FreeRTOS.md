@@ -121,3 +121,7 @@ Task Rx executed
 
 ### Segunda Parte: Agregar `vTaskDelay( x1second )` a `RxTask`
 
+
+
+### Tercera Parte: Asignar la misma prioridad a ambas tareas
+

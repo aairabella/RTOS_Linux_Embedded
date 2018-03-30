@@ -4,16 +4,6 @@ En este repositorio se encuentran los recursos de teoría, trabajos prácticos y
 
 ## Organización del Repositorio
 
-### `practicos`
-
-En la carpeta `practicos` se encuentran los enunciados de los trabajos prácticos: 
-
-```
-practicos
-├── a_FreeRTOS.pdf
-├── b_FreeRTOS.pdf
-└── c_PetaLinux.pdf
-```
 
 ### `software`
 
@@ -33,4 +23,21 @@ teoria
 ```
 
 
+### `practicos`
+
+En la carpeta `practicos` se encuentran los enunciados de los trabajos prácticos: 
+
+```
+practicos
+├── a_FreeRTOS.pdf
+├── b_FreeRTOS.pdf
+└── c_PetaLinux.pdf
+```
+
 # Desarrollo de los ejercicios
+
+Los ejercicios se dividieron en 3 documentos separados, según corresponde a los enunciados listados en la seccion anterior. 
+
+[Ejercicios a_FreeRTOS](practicos/a_FreeRTOS.md) 
+Ejercicios b_FreeRTOS
+Ejercicios c_PetaLinux
