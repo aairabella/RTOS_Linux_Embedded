@@ -63,7 +63,7 @@ static void taskLED( void *pvParameters )
         XGpio_DiscreteWrite(&leds, 1, counter);
 
 		if (counter % 8 == 0){
-		// Take Semaphore
+		// Give Semaphore
         	xSemaphoreGive( semHandler );
 
 			xil_printf("Semaphore given!\n\r");
