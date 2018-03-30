@@ -38,6 +38,6 @@ practicos
 
 Los ejercicios se dividieron en 3 documentos separados, según corresponde a los enunciados listados en la seccion anterior. 
 
-[Ejercicios a_FreeRTOS](practicos/a_FreeRTOS.md) 
-Ejercicios b_FreeRTOS
-Ejercicios c_PetaLinux
+- [Ejercicios a_FreeRTOS](practicos/a_FreeRTOS.md) 
+- [Ejercicios b_FreeRTOS](practicos/b_FreeRTOS.md) 
+- [Ejercicios c_PetaLinux](practicos/c_PetaLinux.md)
