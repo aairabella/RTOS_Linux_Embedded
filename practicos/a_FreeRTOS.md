@@ -174,4 +174,28 @@ FreeRTOS Hello World Example PASSED
 
 ```
 
+## Ejercicio 3
+
+Aumentar la cantidad de valores de la Queue. Se selecciona un número de 10. 
+
+### Primera parte
+
+`prvTxTask` con prioridad mayor a `prvRxTask`
+
+*Con `taskDelay()` en ambas tasks*
+
+*Sin `taskDelay()`*
+
+### Segunda parte
+
+`prvRxTask` con prioridad mayor a `prvTxTask`
+
+*Con `taskDelay()` en ambas tasks*
+
+*Sin `taskDelay()`*
+
+
+# Ejercicio 4
+
+
 [Regresar a la página principal](../README.md) 
